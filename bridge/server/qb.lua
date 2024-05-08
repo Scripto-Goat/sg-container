@@ -81,11 +81,7 @@ function itemCount(Player, item, amount)
     if ox_inv then 
         count = exports.ox_inventory:GetItemCount(Player.PlayerData.source, item)
     else
-        for slot, data in pairs(Player.PlayerData.items) do -- Apparently qb only counts the amount from the first slot so I gotta do this.
-            if data.name == item then
-                count += data.amount
-            end
-        end
+        -- add custom inventory item count
     end
     return count >= amount
 end
@@ -108,7 +104,3 @@ PlayersWithJob = function(jobName)
 
     return jobCount
 end
-
-RegisterNetEvent('QBCore:Server:OnPlayerUnload', function(source)
-    ServerOnLogout(source)
-end)
